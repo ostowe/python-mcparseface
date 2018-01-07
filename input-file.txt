@@ -1,1 +1,7 @@
-Maybe there was once a human who looked like you, and somewhere along the line you killed him and took his place. And your superiors don't know.
+1	The	_	DET	DT	_	3	det	_	_
+2	cryptocurrency	_	NOUN	NN	_	3	nn	_	_
+3	bubble	_	NOUN	NN	_	5	nsubj	_	_
+4	is	_	VERB	VBZ	_	5	aux	_	_
+5	strangling	_	VERB	VBG	_	0	ROOT	_	_
+6	innovation	_	NOUN	NN	_	5	dobj	_	_
+
