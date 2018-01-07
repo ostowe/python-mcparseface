@@ -3,14 +3,16 @@ import sys
 import time
 import asciitree
 import collections
+import imp
 
 from concurrent.futures import ThreadPoolExecutor
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+PARSEFACE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-runfiles_path = os.path.join(PROJECT_ROOT, 'models', 'syntaxnet', 'bazel-bin', 'syntaxnet', 'parser_eval.runfiles')
-tensorflow_path = os.path.join(PROJECT_ROOT, 'models', 'syntaxnet', 'bazel-bin', 'syntaxnet', 'parser_eval.runfiles',
-                               'external', 'tf')
+runfiles_path = os.path.join(PROJECT_ROOT, 'syntaxnet', 'models', 'syntaxnet', 'bazel-bin', 'syntaxnet', 'parser_eval.runfiles', '__main__')
+tensorflow_path = os.path.join(PROJECT_ROOT, 'syntaxnet', 'models', 'syntaxnet', 'bazel-bin', 'syntaxnet', 'parser_eval.runfiles',
+  '__main__', 'external', 'org_tensorflow')
 
 sys.path.append(runfiles_path)
 sys.path.append(tensorflow_path)
@@ -20,14 +22,13 @@ from tensorflow.python.platform import tf_logging as logging
 from syntaxnet import sentence_pb2, structured_graph_builder
 from syntaxnet.ops import gen_parser_ops
 
-
-input_file_path = os.path.join(PROJECT_ROOT, "input-file.txt")
-output_file_path = os.path.join(PROJECT_ROOT, "output-file.txt")
-parser_path = os.path.join(PROJECT_ROOT, 'models', 'syntaxnet', 'bazel-bin', 'syntaxnet', 'parser_eval')
-mcparseface_path = os.path.join(PROJECT_ROOT, 'models', 'syntaxnet', 'syntaxnet', 'models', 'parsey_mcparseface')
-tagger_params_path = os.path.join(mcparseface_path, 'tagger-params')
-parser_params_path = os.path.join(mcparseface_path, 'parser-params')
-task_context_path = os.path.join(PROJECT_ROOT, "custom_context.pbtxt")
+input_file_path = os.path.join(PARSEFACE_ROOT, "input-file.txt")
+output_file_path = os.path.join(PARSEFACE_ROOT, "output-file.txt")
+parser_path = os.path.join(PROJECT_ROOT, 'syntaxnet', 'models', 'syntaxnet', 'bazel-bin', 'syntaxnet', 'parser_eval')
+model_path = os.path.join(PROJECT_ROOT, 'syntaxnet', 'models', 'syntaxnet', 'syntaxnet', 'models', 'parsey_mcparseface')
+tagger_params_path = os.path.join(model_path, 'tagger-params')
+parser_params_path = os.path.join(model_path, 'parser-params')
+task_context_path = os.path.join(PARSEFACE_ROOT, "custom_context.pbtxt")
 
 """
 PARSER_EVAL=bazel-bin/syntaxnet/parser_eval
