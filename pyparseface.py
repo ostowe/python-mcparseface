@@ -30,8 +30,6 @@ tagger_params_path = os.path.join(model_path, 'tagger-params')
 parser_params_path = os.path.join(model_path, 'parser-params')
 task_context_path = os.path.join(PROJECT_ROOT, "custom_context.pbtxt")
 
-print model_path
-
 """
 PARSER_EVAL=bazel-bin/syntaxnet/parser_eval
 MODEL_DIR=syntaxnet/models/parsey_mcparseface

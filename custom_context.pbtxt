@@ -211,7 +211,7 @@ input {
 }
 input {
   name: 'output-to-file'
-  record_format: 'json'
+  record_format: 'conll-sentence'
   Part {
     file_pattern: 'output-file.txt'
   }
